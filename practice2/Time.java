@@ -66,11 +66,11 @@ public class Time {
         return new Time(newHour, newMinute, newSecond);
     }
     public static void main(String[] args) {
-        Time t = new Time(00, 38, 38);
+        Time t = new Time(23, 38, 38);
         System.out.println(t.toUniversal());
         System.out.println(t.toStandard());
         Time t2 = new Time(9, 9, 9);
-        t.add(t, t2);
-        System.out.println(t.toUniversal());
+        Time result=t.add(t, t2);
+        System.out.println(result.toUniversal());
     }
 }
