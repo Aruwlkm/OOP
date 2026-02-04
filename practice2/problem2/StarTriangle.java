@@ -1,4 +1,4 @@
-package practice2;
+package problem2;
 
 public class StarTriangle {
     private int count;
@@ -16,10 +16,4 @@ public class StarTriangle {
         }
         return sb.toString();
     }
-
-    public static void main(String[] args) {
-        StarTriangle small = new StarTriangle(3);
-        System.out.println(small.toString());
-    }
-
 }

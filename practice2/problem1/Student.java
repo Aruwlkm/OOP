@@ -1,3 +1,5 @@
+package problem1;
+
 public class Student {
     private String name;
     private int id;
@@ -16,13 +18,4 @@ public class Student {
     public void incrementID() {
         id+=1;
     }
-
-    public static void main(String[] args) {
-        Student stud = new Student("Aruu",1);
-
-        stud.displayDetails();
-        stud.incrementID();
-        stud.displayDetails();
-    }
-
 }

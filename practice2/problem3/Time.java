@@ -1,9 +1,8 @@
-package practice2;
+package problem3;
 public class Time {
     private int hour;
     private int minute;
     private int second;
-
     public Time(int h, int m, int s) {
         this.hour = h;
         this.minute = m;
@@ -24,14 +23,16 @@ public class Time {
         return sb.toString();
     }
     public String toStandard() {
-        boolean ok = false;
-        StringBuilder sb = new StringBuilder();
-        if(hour > 12) {
-            ok = true;
-            hour -= 12;
+        int h=hour;
+        boolean isPM=false;
+        if(h>=12){
+            isPM=true;
+            if(h>12) h-=12;
         }
-        if(hour < 10) sb.append("0" + hour + ":");
-        else sb.append(hour + ":");
+        if(h==0) h=12;
+        StringBuilder sb = new StringBuilder();
+        if(h < 10) sb.append("0" + h + ":");
+        else sb.append(h + ":");
 
         if(minute < 10) sb.append("0" + minute + ":");
         else sb.append(minute + ":");
@@ -39,38 +40,25 @@ public class Time {
         if(second < 10) sb.append("0" + second);
         else sb.append(second);
 
-        if(!ok) sb.append(" AM");
-        else sb.append(" PM");
-
+        sb.append(isPM ? " PM" : " AM");
         return sb.toString();
     }
-    public Time add(Time t1, Time t2) {
-        int newHour = t1.hour + t2.hour;
-        int newMinute = t1.minute + t2.minute;
-        int newSecond = t1.second + t2.second;
+    public Time add(Time other) {
+        int newHour = this.hour + other.hour;
+        int newMinute = this.minute + other.minute;
+        int newSecond = this.second + other.second;
 
         if (newSecond >= 60) {
             newSecond -= 60;
             newMinute++;
         }
-
         if (newMinute >= 60) {
             newMinute -= 60;
             newHour++;
         }
-
         if (newHour >= 24) {
             newHour -= 24;
         }
-
         return new Time(newHour, newMinute, newSecond);
-    }
-    public static void main(String[] args) {
-        Time t = new Time(23, 38, 38);
-        System.out.println(t.toUniversal());
-        System.out.println(t.toStandard());
-        Time t2 = new Time(9, 9, 9);
-        Time result=t.add(t, t2);
-        System.out.println(result.toUniversal());
     }
 }
